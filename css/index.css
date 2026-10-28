@@ -1,0 +1,615 @@
+/* 🏡 Index.css - Stylesheet for the homepage.
+  Defines styles specific to the home of Victoria Schuyler.
+*/
+
+/*
+  📄 Container for "whoami" content
+  Controls width, spacing, and typography with a mobile-first approach
+*/
+.who-am-i-container {
+  /* --- Size It --- */
+  max-width: 100vw;
+  line-height: 1.6;
+
+  /* Mobile: smaller type so each bullet stays on one line. Desktop restores 1.25rem. */
+  font-size: 0.875rem;
+
+  /* --- Space It --- */
+
+  /* Centers container horizontally */
+  margin: 0 auto;
+
+  /* Scalable inner spacing (32px ÷ 16px = 2rem) */
+  padding: 2rem;
+}
+
+/*
+  Centers the heading on its own text, the way torischuyler.github.io
+  centers whoami. The typewriter then grows across the word, not the page.
+*/
+.type-line {
+  width: max-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Page Heading */
+.who-am-i-container h1 {
+  /* --- Size It --- */
+  font-size: 4rem;
+
+  /* --- Space It --- */
+
+  /* Hides header text until the typewriter keyframes animation reveals it on the page */
+  overflow: hidden;
+
+  /* --- Style It --- */
+
+  /*
+    Limelight, same face as torischuyler.github.io, in the site's green.
+  */
+  font-family: Limelight, system-ui, sans-serif;
+  color: var(--header-color);
+
+  /* Keeps text on one line so it types out like a typewriter */
+  white-space: nowrap;
+
+  /* --- Chaos It --- */
+
+  /*
+    Typewriter effect: Text appears character-by-character.
+    - 2s duration for a relaxed pace.
+    - steps() mimics the typewriter "jump" per character—assuming ~10 chars in "whoami"
+    - Forwards keeps the text visible after animation ends.
+  */
+  animation: typewriter 2s steps(10) forwards, reveal-overflow 0s 2s forwards;
+}
+
+/*
+  The word sits in its own box so the blinking cursor can hang off the
+  right edge without pulling "whoami" off center.
+*/
+.who-am-i-container h1 span {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hide the cursor on mobile */
+.who-am-i-container h1 span::after {
+  /* --- Style It --- */
+
+  /* Removes the "|" */
+  content: "";
+}
+
+/* Paragraph text */
+.who-am-i-container p {
+  /* --- Space It --- */
+  margin-bottom: 0.5rem;
+
+  /* --- Style It --- */
+  text-align: center;
+
+  /* Keeps a wrapped line from leaving one short word sitting by itself */
+  text-wrap: balance;
+}
+
+/* Unordered list */
+.who-am-i-container ul {
+  /* --- Size It --- */
+
+  /* Shrinks to the longest bullet so the whole list can sit in the middle */
+  width: fit-content;
+  max-width: 100%;
+
+  /* --- Space It --- */
+
+  /* Centers the list. Emojis stay in each item's left padding, so they still line up. */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* --- Style It --- */
+
+  /* --- Remove default bullets --- */
+  list-style-type: none;
+}
+
+/* List items */
+.who-am-i-container li {
+  /* --- Space It --- */
+  margin-bottom: 0.5rem;
+  padding-left: 2.2rem;
+  white-space: nowrap;
+
+  /*
+    Sets <li> as the starting point for the ::before emojis.
+    Without this, the emojis would move to the page's left edge.
+  */
+  position: relative;
+}
+
+/* Custom emoji bullets */
+.who-am-i-container li:nth-child(1)::before {
+  /* --- Space It --- */
+
+  /* Places the emoji at the left edge of the <li>, which is indented by the <ul> */
+  position: absolute;
+
+  /* Moves the emoji to the left edge of the <li> */
+  left: 0;
+
+  /* --- Style It --- */
+  content: '🎮';
+}
+
+.who-am-i-container li:nth-child(2)::before {
+  /* --- Space It --- */
+  position: absolute;
+  left: 0;
+
+  /* --- Style It --- */
+  content: '🔬';
+}
+
+.who-am-i-container li:nth-child(3)::before {
+  /* --- Space It --- */
+  position: absolute;
+  left: 0;
+
+  /* --- Style It --- */
+  content: '😌';
+}
+
+.who-am-i-container li:nth-child(4)::before {
+  /* --- Space It --- */
+  position: absolute;
+  left: 0;
+
+  /* --- Style It --- */
+  content: '📐';
+}
+
+/* Fallback for unsupported ::before */
+@supports not (selector(::before)) {
+  .who-am-i-container ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+  }
+}
+
+/*
+  Env variables
+  A separate section below whoami. Same Limelight header, green, and
+  typewriter as whoami. The typing waits until the section is on screen.
+*/
+.env-section {
+  /* --- Space It --- */
+
+  /* Clears the ASCII tree so this reads as its own section */
+  margin-top: 3rem;
+}
+
+.who-am-i-container .env-section h1 {
+  /*
+    whoami is short enough to stay at 4rem. This phrase is longer, so the
+    size eases down on narrow screens and the whole header stays on one line.
+  */
+  font-size: clamp(1.75rem, 10vw, 4rem);
+
+  /* Pulls the bullets up under the header. The shared h1 margin is looser. */
+  margin-bottom: 0.45rem;
+
+  animation: typewriter 2s steps(10) forwards, reveal-overflow 0s 2s forwards;
+  animation-play-state: paused;
+}
+
+/*
+  Center each bullet on the header text. Shorter lines sit in the middle
+  of "env variables" instead of starting at the left of a page-centered column.
+*/
+.who-am-i-container .env-section ul {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
+}
+
+.who-am-i-container .env-section li {
+  padding-left: 0;
+  text-align: center;
+}
+
+.who-am-i-container .env-section li::before {
+  position: static;
+  margin-right: 0.4em;
+}
+
+.who-am-i-container .env-section h1.is-visible {
+  animation-play-state: running;
+}
+
+/* Show the header if it cannot type itself in */
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  .who-am-i-container .env-section h1 {
+    animation: none;
+    width: auto;
+    overflow: visible;
+  }
+}
+
+/*
+  git fetch origin
+  Same Limelight face and green as whoami. It types in once it is on screen,
+  blinks the cursor, then that cursor becomes the location pin.
+*/
+.who-am-i-container h2 {
+  /* --- Size It --- */
+
+  /*
+    whoami is short enough to stay at 4rem. This phrase is longer, so the
+    size eases down on narrow screens and the heading stays on one line.
+  */
+  font-size: clamp(1.45rem, 7.2vw, 4rem);
+
+  /* --- Space It --- */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  /* Hides the heading until the typewriter reveals it */
+  overflow: hidden;
+
+  /* --- Style It --- */
+  font-family: Limelight, system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--header-color);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  /* --- Chaos It --- */
+
+  /* 16 steps, one per character in "git fetch origin" */
+  animation: typewriter 2s steps(16) forwards, reveal-overflow 0s 2s forwards;
+  animation-play-state: paused;
+}
+
+.who-am-i-container h2 span {
+  position: relative;
+  display: inline-block;
+}
+
+/* Cursor hangs just past the word, same slot the pin takes over */
+.who-am-i-container h2 span::after {
+  content: "|";
+  position: absolute;
+  left: 100%;
+  margin-left: 0.12em;
+  animation: blink 1s 7 forwards;
+  animation-play-state: paused;
+}
+
+.who-am-i-container h2.is-visible {
+  animation-play-state: running;
+}
+
+.who-am-i-container h2.is-visible span::after {
+  animation-play-state: running;
+}
+
+/* Pin pops into the cursor slot once the last blink ends */
+.who-am-i-container h2.typed span::after {
+  content: "📍";
+  display: inline-block;
+  animation: emoji-pop 0.6s ease-out forwards;
+}
+
+@supports (content: "📍" / "") {
+  .who-am-i-container h2.typed span::after {
+    content: "📍" / "";
+  }
+}
+
+/* Show the finished heading, pin included, when it should not animate */
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  .who-am-i-container h2 {
+    animation: none;
+    width: auto;
+    overflow: visible;
+  }
+
+  .who-am-i-container h2 span::after {
+    content: "📍";
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  @supports (content: "📍" / "") {
+    .who-am-i-container h2 span::after {
+      content: "📍" / "";
+    }
+  }
+}
+
+/*
+  ls sandbox
+  Same Limelight face, size, and green as the other headers. It types in
+  once it is on screen, blinks the cursor, then that cursor becomes the bucket.
+*/
+.sandbox-section {
+  /* --- Space It --- */
+
+  /* Clears the env list so this reads as its own section */
+  margin-top: 3rem;
+}
+
+.who-am-i-container .sandbox-section h2 {
+  /* The section supplies the gap. The shared h2 margin would stack on top of it. */
+  margin-top: 0;
+
+  /*
+    Same size as env variables: 4rem on a wide screen, easing down so the
+    header stays on one line when the window is narrow.
+  */
+  font-size: clamp(1.75rem, 10vw, 4rem);
+
+  /*
+    10 steps, one per character in "ls sandbox". Only the timing changes.
+    Resetting the animation shorthand would leave this paused over is-visible.
+  */
+  animation-timing-function: steps(10), ease;
+}
+
+.who-am-i-container .sandbox-section h2.is-visible {
+  animation-play-state: running;
+}
+
+/* Bucket pops into the cursor slot once the last blink ends */
+.who-am-i-container h2.sandbox-heading.typed span::after {
+  content: "🪣";
+}
+
+@supports (content: "🪣" / "") {
+  .who-am-i-container h2.sandbox-heading.typed span::after {
+    content: "🪣" / "";
+  }
+}
+
+/* Show the finished heading, bucket included, when it should not animate */
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  .who-am-i-container h2.sandbox-heading span::after {
+    content: "🪣";
+  }
+
+  @supports (content: "🪣" / "") {
+    .who-am-i-container h2.sandbox-heading span::after {
+      content: "🪣" / "";
+    }
+  }
+}
+
+/*
+  The sandbox link stays gold, before and after a click. Hover brightens
+  it and turns on the same gold glow the site uses on headings.
+*/
+.sandbox-entry {
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+.sandbox-link {
+  /* --- Size It --- */
+  /* 1.5rem = 24px on the 16px root. Same size on desktop and mobile. */
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  /* Big enough to tap, and the padding is part of the focus ring */
+  display: inline-block;
+  padding: 0.45rem 0.35rem;
+
+  /* --- Style It --- */
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: #d4af37;
+  text-decoration: none;
+  border-radius: 4px;
+
+  /* --- Chaos It --- */
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* Arrow is the click cue. Empty alt text so it is not read aloud. */
+.sandbox-link::after {
+  content: "→" / "";
+  margin-left: 0.4em;
+  font-weight: 400;
+}
+
+.sandbox-link:visited {
+  color: #d4af37;
+}
+
+.sandbox-link:hover,
+.sandbox-link:focus-visible {
+  color: #ffe7a3;
+  text-shadow: 0 0 8px #d4af37, 0 0 18px rgb(212 175 55 / 65%);
+}
+
+.sandbox-link:focus-visible {
+  outline: 3px solid #ffe7a3;
+  outline-offset: 3px;
+}
+
+/* ASCII tree */
+.ascii-tree {
+  /* --- Size It --- */
+
+  /* Shrinks to the longest line, then stops at the container edge */
+  width: fit-content;
+  max-width: 100%;
+
+  /* Includes padding in the element's width to prevent overflow */
+  box-sizing: border-box;
+
+  /* Matches the mobile body size: 0.875rem on the 16px root. */
+  font-size: 14px;
+
+  /* --- Space It --- */
+
+  /* Centers the tree as one block. Lines stay left-aligned so the branches still connect. */
+  margin-left: auto;
+  margin-right: auto;
+
+  /*
+    Same nudge as torischuyler.github.io, where translateX(1rem) on an 18px
+    root pulls the centered tree under the heading.
+  */
+  transform: translateX(18px);
+
+  /* --- Style It --- */
+  font-family: monospace;
+  text-align: left;
+
+  /*
+    The page's 1.6 line-height leaves gaps in the box-drawing bars.
+    A tighter leading lets the trunk read as one line.
+  */
+  line-height: 1.15;
+
+  /* Allows text to wrap while preserving whitespace for ASCII structure */
+  white-space: pre-wrap;
+}
+
+/* Toggle desktop/mobile branches */
+.ascii-tree-desktop {
+  display: none;
+}
+
+.ascii-tree-mobile {
+  display: block;
+}
+
+/* Portrait */
+.portrait {
+  /* --- Size It --- */
+  max-width: 100%;
+
+  /* Maintains aspect ratio when scaled */
+  height: auto;
+
+  /* --- Space It --- */
+
+  /* Makes the image a block element to allow margin centering */
+  display: block;
+
+  /*
+    30px above the photo, plus 1rem of breathing room, matching the old
+    gallery offset. Centers horizontally with auto margins.
+  */
+  margin: calc(30px + 1rem) auto 1rem;
+
+  /* --- Style It --- */
+
+  /* Adds a subtle border and shadow for visual polish */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+/* Keyframes for typewriter effect */
+@keyframes typewriter {
+  /* Starts with no width, text "hidden" */
+  from {
+    width: 0;
+  }
+
+  /* Expands across the centered word */
+  to {
+    width: 100%;
+  }
+}
+
+/* Lets the cursor sit just past the word once typing finishes */
+@keyframes reveal-overflow {
+  to {
+    overflow: visible;
+  }
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+  /* Starts fully visible */
+  0% { opacity: 1; }
+
+  /* Fades to almost off, but softer */
+  50% { opacity: 1; }
+
+  /* Ends fully hidden */
+  100% { opacity: 0; }
+}
+
+/* Location pin pops into the cursor slot once the last blink ends */
+@keyframes emoji-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/*
+  💻 Tablet/Desktop Styles
+  Applies above 768px (tablet portrait width, e.g., iPad).
+*/
+@media (width >= 769px) {
+  .who-am-i-container {
+    font-size: 1.25rem;
+  }
+
+  .who-am-i-container li {
+    white-space: normal;
+  }
+
+  .ascii-tree {
+    /* --- Size It --- */
+
+    /* torischuyler.github.io uses 1rem against an 18px root. */
+    font-size: 18px;
+
+    /* translateX(4rem) on that page's 18px root. */
+    transform: translateX(72px);
+  }
+
+  /* Toggle desktop/mobile branches */
+  .ascii-tree-desktop {
+    display: block;
+  }
+
+  .ascii-tree-mobile {
+    display: none;
+  }
+
+  /* Blinking cursor, parked just after the word so the heading stays centered */
+  .who-am-i-container h1 span::after {
+    /* --- Space It --- */
+    position: absolute;
+    left: 100%;
+
+    /* --- Style It --- */
+    content: "|";
+
+    /* --- Chaos It --- */
+
+    /* Blinks every 1s for 7 cycles, then stops */
+    animation: blink 1s 7 forwards;
+  }
+
+  /* Hold the env cursor until that heading types in */
+  .who-am-i-container .env-section h1:not(.is-visible) span::after {
+    animation-play-state: paused;
+  }
+}

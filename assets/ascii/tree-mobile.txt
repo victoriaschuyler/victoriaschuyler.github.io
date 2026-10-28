@@ -1,0 +1,21 @@
+origin
+│
+├── Maine
+│   ├── Scarborough (Hometown)
+│   ├── Portland (Cheverus HS)
+│   └── Orono (Univ. of Maine)
+│
+├── South Carolina
+│   └── North Charleston (Lambs)
+│
+├── New Jersey
+│   └── Princeton (PCG, NJ SMART)
+│
+├── New York
+│   └── NYC (StreetEasy/Zillow)
+│       ├── Kips Bay
+│       ├── Williamsburg
+│       └── Greenwich Village
+│
+└── Texas
+    └── Austin (Starlink/SpaceX)

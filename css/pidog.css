@@ -1,0 +1,121 @@
+/*
+  PiDog July 2026
+  A single column of portrait clips. Phone width uses the full column.
+  Wider screens keep each video near its filmed size so it does not stretch.
+*/
+
+.pidog {
+  /* --- Size It --- */
+  width: min(40rem, 100%);
+
+  /* --- Space It --- */
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3.5rem;
+}
+
+.pidog-home {
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+/*
+  Stays gold, same as the homepage link. Hover brightens it and turns on
+  the gold glow. The arrow and the house are the label.
+*/
+.pidog-home-link {
+  /* --- Size It --- */
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  display: inline-block;
+  padding: 0.35rem 0.2rem;
+
+  /* --- Style It --- */
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: #d4af37;
+  text-decoration: none;
+  border-radius: 4px;
+
+  /* --- Chaos It --- */
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.pidog-home-link:visited {
+  color: #d4af37;
+}
+
+.pidog-home-link:hover,
+.pidog-home-link:focus-visible {
+  color: #ffe7a3;
+  text-shadow: 0 0 8px #d4af37, 0 0 18px rgb(212 175 55 / 65%);
+}
+
+.pidog-home-link:focus-visible {
+  outline: 3px solid #ffe7a3;
+  outline-offset: 3px;
+}
+
+.pidog h1 {
+  /* --- Size It --- */
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  line-height: 1.15;
+
+  /* --- Space It --- */
+  margin-bottom: 0.25rem;
+
+  /* --- Style It --- */
+  font-family: Limelight, system-ui, sans-serif;
+  font-weight: 400;
+  color: var(--header-color);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.clip {
+  margin-top: 2.5rem;
+}
+
+.clip h2 {
+  /* --- Size It --- */
+  font-size: clamp(1.6rem, 5vw, 2rem);
+
+  /* --- Space It --- */
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+
+  /* --- Style It --- */
+  text-align: center;
+}
+
+.clip video {
+  /* --- Size It --- */
+
+  /* Portrait clips. Cap the width so a desktop window does not blow them up. */
+  width: min(100%, 22.5rem);
+  height: auto;
+
+  /* --- Space It --- */
+  display: block;
+  margin-inline: auto;
+
+  /* --- Style It --- */
+  background-color: #0d1b2a;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 28%);
+}
+
+@media (width >= 769px) {
+  .pidog {
+    padding-top: 2rem;
+  }
+
+  .clip video {
+    width: min(100%, 26rem);
+  }
+}
+
+/* Landscape clips fill the column. Portrait clips stay near phone width. */
+.clip video.landscape {
+  width: 100%;
+}
