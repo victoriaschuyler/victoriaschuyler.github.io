@@ -99,11 +99,6 @@
   animation: blink 1s 7 forwards;
 }
 
-/* Hold the cursor until that heading types in */
-.who-am-i-container h1:not(.is-visible) span::after {
-  animation-play-state: paused;
-}
-
 /* Paragraph text */
 .who-am-i-container p {
   /* --- Space It --- */
@@ -294,6 +289,11 @@
   animation-play-state: paused;
 }
 
+/* Hold the whoami cursor until that heading types in */
+.who-am-i-container h1:not(.is-visible) span::after {
+  animation-play-state: paused;
+}
+
 .who-am-i-container h2.is-visible {
   animation-play-state: running;
 }
@@ -412,6 +412,7 @@
 
 .sandbox-link {
   /* --- Size It --- */
+
   /* 1.5rem = 24px on the 16px root. Same size on desktop and mobile. */
   font-size: 1.5rem;
   font-weight: 600;
