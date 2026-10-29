@@ -1,24 +1,16 @@
 {
   "name": "victoriaschuyler.github.io",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "This file contains metadata for dev dependencies (like stylelint) and npm scripts (commands to run, like lint:css).",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:css": "stylelint \"css/**/*.css\""
+    "lint:css": "stylelint \"css/**/*.css\"",
+    "lint:css:fix": "stylelint \"css/**/*.css\" --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/victoriaschuyler/victoriaschuyler.github.io.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/victoriaschuyler/victoriaschuyler.github.io/issues"
-  },
-  "homepage": "https://github.com/victoriaschuyler/victoriaschuyler.github.io#readme",
   "devDependencies": {
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0"
