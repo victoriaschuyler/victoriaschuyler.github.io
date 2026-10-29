@@ -1,98 +1,102 @@
-// Play the env variables heading once its section is on screen,
-// using the same typewriter animation as whoami.
-const envSection = document.querySelector('.env-section');
-const envHeading = envSection?.querySelector('h1');
+// Play each homepage heading once the reader has scrolled it into view.
+// The typewriter and cursor stay paused until then. whoami and
+// git fetch origin are already on screen when the page loads, so they
+// type right away.
 
-// Type "ls sandbox" once it is on screen, then swap the blinking
-// cursor for the bucket. Same handoff as git fetch origin.
-const sandboxSection = document.querySelector('.sandbox-section');
-const sandboxHeading = sandboxSection?.querySelector('.sandbox-heading');
+// A heading in the bottom half is not "this part" yet. The last
+// sections cannot scroll up to the midline, so the bottom of the page
+// counts once the reader has reached it.
+const reached = (target) => {
+  const rect = target.getBoundingClientRect();
+  if (rect.height === 0) return false;
 
-const onScreen = (target, play) => {
-  if (!('IntersectionObserver' in window)) {
-    play();
-    return;
-  }
+  const viewHeight = window.innerHeight;
+  const onScreen = rect.bottom > 24 && rect.top < viewHeight - 24;
+  if (!onScreen) return false;
 
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((entry) => entry.isIntersecting)) {
-      play();
-      observer.disconnect();
-    }
-  }, { rootMargin: '0px 0px -60px 0px', threshold: 0 });
-
-  observer.observe(target);
+  const inReadingBand = rect.top < viewHeight * 0.5;
+  const atPageEnd = window.scrollY + viewHeight >= document.documentElement.scrollHeight - 2;
+  return inReadingBand || atPageEnd;
 };
 
-if (sandboxHeading) {
-  sandboxHeading.addEventListener('animationend', (event) => {
-    if (event.animationName === 'blink') {
-      sandboxHeading.classList.add('typed');
-    }
+const onScreen = (target, play) => {
+  if (!target) return;
+
+  let played = false;
+  const tick = () => {
+    if (played || !reached(target)) return;
+    played = true;
+    window.removeEventListener('scroll', tick);
+    window.removeEventListener('resize', tick);
+    play();
+  };
+
+  window.addEventListener('scroll', tick, { passive: true });
+  window.addEventListener('resize', tick);
+  tick();
+};
+
+const playHeading = (heading) => {
+  if (!heading) return;
+
+  onScreen(heading.closest('.type-line') || heading, () => {
+    heading.classList.add('is-visible');
   });
-}
+};
 
-if (envHeading || sandboxHeading) {
-  const arm = () => {
-    if (envHeading) onScreen(envSection, () => envHeading.classList.add('is-visible'));
-    if (sandboxHeading) onScreen(sandboxSection, () => sandboxHeading.classList.add('is-visible'));
-  };
+// The cursor blink lives on the heading. When it finishes, the pin or
+// bucket takes that spot.
+const swapCursor = (heading) => {
+  if (!heading) return;
 
-  // The ASCII tree loads after first paint and pushes this section
-  // down. Wait for the visible tree so the typewriter does not finish off screen.
-  const trees = [...document.querySelectorAll('.ascii-tree')];
-  const visibleTree = () => trees.find((tree) => getComputedStyle(tree).display !== 'none');
-  const treeReady = () => {
-    const shown = visibleTree();
-    return shown && shown.textContent.trim().length > 0;
-  };
+  heading.addEventListener('animationend', (event) => {
+    if (event.animationName === 'blink') heading.classList.add('typed');
+  });
+};
 
-  if (trees.length === 0 || treeReady()) {
-    arm();
-  } else {
-    let armed = false;
-    const start = () => {
-      if (armed) return;
-      armed = true;
-      treeWatcher.disconnect();
-      arm();
-    };
-
-    const treeWatcher = new MutationObserver(() => {
-      if (treeReady()) start();
-    });
-
-    trees.forEach((tree) => {
-      treeWatcher.observe(tree, { childList: true, characterData: true, subtree: true });
-    });
-
-    setTimeout(start, 3000);
-  }
-}
-
-// Type "git fetch origin" once it is on screen, then swap the blinking
-// cursor for the location pin. Same handoff as torischuyler.github.io.
+const whoami = document.querySelector('main > .type-line h1');
+const envHeading = document.querySelector('.env-section h1');
+const sandboxHeading = document.querySelector('.sandbox-heading');
 const fetchHeading = document.querySelector('.fetch-heading');
 
-if (fetchHeading) {
-  const play = () => fetchHeading.classList.add('is-visible');
+playHeading(whoami);
+if (fetchHeading) fetchHeading.classList.add('is-visible');
+swapCursor(fetchHeading);
+swapCursor(sandboxHeading);
 
-  fetchHeading.addEventListener('animationend', (event) => {
-    if (event.animationName === 'blink') {
-      fetchHeading.classList.add('typed');
-    }
+// The ASCII tree loads after first paint and pushes these two down.
+// Wait for the visible tree so a heading does not type, then get pushed
+// off screen before the reader reaches it.
+const armLowerHeadings = () => {
+  playHeading(envHeading);
+  playHeading(sandboxHeading);
+};
+
+const trees = [...document.querySelectorAll('.ascii-tree')];
+const visibleTree = () => trees.find((tree) => getComputedStyle(tree).display !== 'none');
+const treeReady = () => {
+  const shown = visibleTree();
+  return shown && shown.textContent.trim().length > 0;
+};
+
+if ((envHeading || sandboxHeading) && (trees.length === 0 || treeReady())) {
+  armLowerHeadings();
+} else if (envHeading || sandboxHeading) {
+  let armed = false;
+  const start = () => {
+    if (armed) return;
+    armed = true;
+    treeWatcher.disconnect();
+    armLowerHeadings();
+  };
+
+  const treeWatcher = new MutationObserver(() => {
+    if (treeReady()) start();
   });
 
-  if (!('IntersectionObserver' in window)) {
-    play();
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        play();
-        observer.disconnect();
-      }
-    }, { rootMargin: '0px 0px -60px 0px', threshold: 0 });
+  trees.forEach((tree) => {
+    treeWatcher.observe(tree, { childList: true, characterData: true, subtree: true });
+  });
 
-    observer.observe(fetchHeading.closest('.type-line') || fetchHeading);
-  }
+  setTimeout(start, 3000);
 }

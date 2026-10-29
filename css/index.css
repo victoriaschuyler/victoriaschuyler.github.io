@@ -64,8 +64,15 @@
     - 2s duration for a relaxed pace.
     - steps() mimics the typewriter "jump" per character—assuming ~10 chars in "whoami"
     - Forwards keeps the text visible after animation ends.
+    Paused until the heading scrolls into view. whoami is already there
+    on load, so it still types immediately.
   */
   animation: typewriter 2s steps(10) forwards, reveal-overflow 0s 2s forwards;
+  animation-play-state: paused;
+}
+
+.who-am-i-container h1.is-visible {
+  animation-play-state: running;
 }
 
 /*
@@ -77,12 +84,24 @@
   display: inline-block;
 }
 
-/* Hide the cursor on mobile */
+/* Blinking cursor, parked just after the word so the heading stays centered */
 .who-am-i-container h1 span::after {
-  /* --- Style It --- */
+  /* --- Space It --- */
+  position: absolute;
+  left: 100%;
 
-  /* Removes the "|" */
-  content: "";
+  /* --- Style It --- */
+  content: "|";
+
+  /* --- Chaos It --- */
+
+  /* Blinks every 1s for 7 cycles, then stops */
+  animation: blink 1s 7 forwards;
+}
+
+/* Hold the cursor until that heading types in */
+.who-am-i-container h1:not(.is-visible) span::after {
+  animation-play-state: paused;
 }
 
 /* Paragraph text */
@@ -195,9 +214,6 @@
 .who-am-i-container .env-section h1 {
   /* Pulls the bullets up under the header. The shared h1 margin is looser. */
   margin-bottom: 0.45rem;
-
-  animation: typewriter 2s steps(10) forwards, reveal-overflow 0s 2s forwards;
-  animation-play-state: paused;
 }
 
 /*
@@ -221,13 +237,9 @@
   margin-right: 0.4em;
 }
 
-.who-am-i-container .env-section h1.is-visible {
-  animation-play-state: running;
-}
-
 /* Show the header if it cannot type itself in */
 @media (prefers-reduced-motion: reduce), (scripting: none) {
-  .who-am-i-container .env-section h1 {
+  .who-am-i-container h1 {
     animation: none;
     width: auto;
     overflow: visible;
@@ -297,6 +309,15 @@
   animation: emoji-pop 0.6s ease-out forwards;
 }
 
+/*
+  The pin drawing starts about 0.25em into its box, so the shared 0.12em
+  cursor gap sits it too far from the word. This lands the drawing in the
+  same gap the bucket uses beside "ls sandbox".
+*/
+.who-am-i-container h2.fetch-heading.typed span::after {
+  margin-left: -0.1em;
+}
+
 @supports (content: "📍" / "") {
   .who-am-i-container h2.typed span::after {
     content: "📍" / "";
@@ -316,6 +337,10 @@
     animation: none;
     opacity: 1;
     transform: none;
+  }
+
+  .who-am-i-container h2.fetch-heading span::after {
+    margin-left: -0.1em;
   }
 
   @supports (content: "📍" / "") {
@@ -584,25 +609,5 @@
 
   .ascii-tree-mobile {
     display: none;
-  }
-
-  /* Blinking cursor, parked just after the word so the heading stays centered */
-  .who-am-i-container h1 span::after {
-    /* --- Space It --- */
-    position: absolute;
-    left: 100%;
-
-    /* --- Style It --- */
-    content: "|";
-
-    /* --- Chaos It --- */
-
-    /* Blinks every 1s for 7 cycles, then stops */
-    animation: blink 1s 7 forwards;
-  }
-
-  /* Hold the env cursor until that heading types in */
-  .who-am-i-container .env-section h1:not(.is-visible) span::after {
-    animation-play-state: paused;
   }
 }
