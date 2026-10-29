@@ -127,3 +127,33 @@
 .clip video.landscape {
   width: 100%;
 }
+
+/*
+  A project title with the name kept on one line, past the column if needed.
+  "Pi Traffic Light Simulator" is about 13.4× its font size wide.
+  Phones: 1.625rem (26px) name, 1.375rem (22px) date. 7.4vw shrinks the name only on screens narrower than ~350px so it still fits.
+  Desktop: 6.8vw (~91% of the screen) capped at 3.5rem (56px), and the usual 2.25rem (36px) date.
+  Shifting the name left 50% then back by half its width centers it on the column.
+*/
+.project-title-one-line .project-name {
+  font-size: min(7.4vw, 1.625rem);
+  white-space: nowrap;
+  width: max-content;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.project-title-one-line .project-date {
+  font-size: 1.375rem;
+}
+
+@media (width >= 769px) {
+  .project-title-one-line .project-name {
+    font-size: min(6.8vw, 3.5rem);
+  }
+
+  .project-title-one-line .project-date {
+    font-size: 2.25rem;
+  }
+}
