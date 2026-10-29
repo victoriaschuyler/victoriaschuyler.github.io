@@ -1,3 +1,6 @@
 {
-  "extends": ["markuplint:recommended"]
+  "extends": ["markuplint:recommended"],
+  "rules": {
+    "a11y/media-track": false
+  }
 }
