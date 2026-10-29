@@ -1,7 +1,6 @@
 /*
-  Project pages (PiDog, xArm)
-  A single column of portrait clips. Phone width uses the full column.
-  Wider screens keep each video near its filmed size so it does not stretch.
+  Project pages: one centered column of video clips.
+  Portrait clips are capped near phone width; landscape clips fill the column.
 */
 
 .project {
@@ -16,8 +15,8 @@
 }
 
 /*
-  Stays gold, same as the homepage link. Hover brightens it and turns on
-  the gold glow. The arrow and the house are the label.
+  Gold like the homepage links, even after it's visited. Hover and keyboard focus
+  brighten it with a glow. It shows ← 🏡, and screen readers announce it as "Home".
 */
 .project-home-link {
   font-size: 1.65rem;
@@ -26,7 +25,7 @@
   display: inline-block;
   padding: 0.35rem 0.2rem;
   font-family: "Space Grotesk", system-ui, sans-serif;
-  color: #d4af37;
+  color: var(--subheader-color);
   text-decoration: none;
   border-radius: 4px;
   transition:
@@ -35,14 +34,14 @@
 }
 
 .project-home-link:visited {
-  color: #d4af37;
+  color: var(--subheader-color);
 }
 
 .project-home-link:hover,
 .project-home-link:focus-visible {
   color: #ffe7a3;
   text-shadow:
-    0 0 8px #d4af37,
+    0 0 8px var(--subheader-color),
     0 0 18px rgb(212 175 55 / 65%);
 }
 
@@ -60,10 +59,7 @@
   text-align: center;
 }
 
-/*
-  Name over the date on every width. Mobile sizes are below.
-  Desktop raises them in the media query.
-*/
+/* Stack the project name above the date. Mobile sizes below; the media query increases them for desktop. */
 .project-name,
 .project-date {
   display: block;
@@ -85,7 +81,7 @@
 }
 
 .clip h2 {
-  /* 1.75rem = 28px on mobile. Desktop restores 2rem. */
+  /* 1.75rem = 28px on mobile. Desktop uses 2rem. */
   font-size: 1.75rem;
   margin-top: 0;
   margin-bottom: 0.75rem;
@@ -93,7 +89,7 @@
 }
 
 .clip video {
-  /* Portrait clips. Cap the width so a desktop window does not blow them up. */
+  /* Default for portrait clips: cap at 22.5rem (360px) so they don't get huge on wide screens. */
   width: min(100%, 22.5rem);
   height: auto;
   display: block;
@@ -108,7 +104,7 @@
     padding-top: 2rem;
   }
 
-  /* 3.5rem = 56px. 2.25rem = 36px. Clip titles return to 2rem (32px). */
+  /* 3.5rem = 56px. 2.25rem = 36px. Clip titles use 2rem (32px). */
   .project-name {
     font-size: 3.5rem;
   }
@@ -122,11 +118,12 @@
   }
 
   .clip video {
+    /* 26rem = 416px */
     width: min(100%, 26rem);
   }
 }
 
-/* Landscape clips fill the column. Portrait clips stay near phone width. */
+/* Landscape clips fill the column: up to 600px (40rem minus 1.25rem padding on each side). */
 .clip video.landscape {
   width: 100%;
 }
