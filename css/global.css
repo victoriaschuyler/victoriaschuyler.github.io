@@ -1,93 +1,38 @@
 /*
-  🌎 Global.css - The central stylesheet for the website.
-  This file defines the core styles (like colors, fonts, and layouts)
-  that apply across all pages, keeping the design consistent and easy to update.
+  Global styles shared by every page: reset, color variables, and base element styles.
+  Page-specific styles go in their own files (index.css for the homepage, project.css for project pages).
 */
 
 /*
-  Reset - Removes default browser styles.
-  Sets all elements to start with a clean base for predictable design.
-
-  Every single thing on the page is an element (like text or buttons).
-  Every element has space around it — this is called margin.
-  Every element has space inside it — this is called padding.
+  Reset: clear the browser's default margin and padding, and use border-box sizing
+  so width and height include padding and border.
 */
 * {
-  /*
-    The little asterisk (*) is a CSS superhero! 🦸‍♀️🦸 It targets EVERYTHING on the page -
-    here, we’re using it to wipe out browser defaults.
-  */
-
-  /* --- Size It --- */
-
-  /*
-    By default, browsers use content-box, where width and height only include the content, 
-    excluding padding and borders. With border-box, the width and height include content,
-    padding, and borders, making layout calculations more predictable.
-  */
   box-sizing: border-box;
-
-  /* --- Space It --- */
-
-  /* Setting these to 0 removes any space added to the elements by the browser. */
   margin: 0;
   padding: 0;
 }
 
 /*
-  Root - a CSS pseudo-class targeting the document's root (the <html> element in HTML).
-  It defines custom properties (variables) like colors and fonts, reusable across the document.
+  Root (the <html> element): defines the site's color variables.
+  rem units are based on its font size, which is the browser's setting (1rem = 16px by default).
 */
 :root {
-  /* --- Size It --- */
-
   /*
-    Root font size: Sets the baseline for all rem units across the site.
-    Default is 16px in most browsers, but we define it explicitly for consistency
-    and control, ensuring responsive scaling starts from a known value.
+    Color palette. Green and gold pass contrast only at heading sizes,
+    so don't use them for body text.
   */
-  font-size: 16px;
-
-  /* --- Style It --- */
-
-  /*
-    Core Color Palette 🎨
-
-    Colors are defined using 6-digit hex codes (#RRGGBB), blending red, green, and blue.
-    Examples: #000000 (black), #FFFFFF (white) (can be shortened to #000 and #FFF).
-
-    Hex Code Shorthand
-    A 6-digit hex color (#RRGGBB) can be shortened to 3 digits (#RGB) when each pair
-    of red, green, and blue digits is identical (e.g., #FF0000 → #F00, #FFFFFF → #FFF).
-    If pairs differ (e.g., #4A90E2), use the full 6 digits.
-    
-    🌈 Use https://coolors.co/ to explore palettes.
-
-    Dark Mode Default 🌑
-    Reduces eye strain, enhances focus, and saves battery on OLED screens.
-    Light mode can be toggled as an alternative.
-  */
-
-  /* 🌑 Dark Theme Agnostic Variables */
   --background-color: #2d5a8e;
   --text-color: #fff;
   --header-color: #9cbb80;
   --subheader-color: #d4af37;
 }
 
-/* 
-  Body - The root element for page content. 
-  Defines base styling (fonts and colors) for every page.
+/*
+  Body: default font and colors for every page.
+  Space Grotesk loads from Google Fonts in each page's <head>.
 */
 body {
-  /* --- Size It --- */
-
-  /* Ensures the body is at least as tall as the viewport, allowing it to grow if content overflows. */
-  min-height: 100vh;
-
-  /* --- Style It --- */
-
-  /* Sets a modern font stack with fallbacks and uses custom variables for theme colors. */
   font-family: "Space Grotesk", system-ui, sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -95,20 +40,14 @@ body {
 
 /* Main Page Heading */
 h1 {
-  /* --- Size It --- */
-
   /* 2.5rem = 40px (16px root × 2.5) */
   font-size: 2.5rem;
-
-  /* --- Space It --- */
 
   /* 
     Adds space below the heading (1.618rem ≈ 26px) using the golden ratio
     for aesthetic harmony (and bc 6/18 is my bday 😎).
   */
   margin-bottom: 1.618rem;
-
-  /* --- Style It --- */
   font-family: Righteous, system-ui, sans-serif;
   color: var(--header-color);
   text-align: center;
@@ -116,31 +55,20 @@ h1 {
 
 /* Page Subheading */
 h2 {
-  /* --- Size It --- */
-
-  /* 1.85rem = 29.6px (16px root × 1.85). A step up from the old 1.5rem. */
+  /* 1.85rem = 29.6px (16px root × 1.85) */
   font-size: 1.85rem;
 
-  /* --- Space It --- */
-
-  /* Adds 1rem (16px) space above and below for breathing room between sections. */
+  /* 1rem (16px) above and below */
   margin-top: 1rem;
   margin-bottom: 1rem;
-
-  /* --- Style It --- */
   font-family: Righteous, system-ui, sans-serif;
   font-weight: 700;
   color: var(--subheader-color);
 }
 
-/*
-  💻 Tablet/Desktop Styles
-  Applies above 768px (tablet portrait width, e.g., iPad).
-*/
+/* 💻 Tablet and desktop (769px and up) */
 @media (width >= 769px) {
   h1 {
-    /* --- Size It --- */
-
     /* 3.5rem = 56px (16px root × 3.5) */
     font-size: 3.5rem;
   }

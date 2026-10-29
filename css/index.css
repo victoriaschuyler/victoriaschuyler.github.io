@@ -7,14 +7,11 @@
   Controls width, spacing, and typography with a mobile-first approach
 */
 .who-am-i-container {
-  /* --- Size It --- */
   max-width: 100vw;
   line-height: 1.6;
 
   /* Mobile: smaller type so each bullet stays on one line. Desktop restores 1.25rem. */
   font-size: 0.875rem;
-
-  /* --- Space It --- */
 
   /* Centers container horizontally */
   margin: 0 auto;
@@ -36,17 +33,11 @@
 
 /* Page Heading */
 .who-am-i-container h1 {
-  /* --- Size It --- */
-
   /* 2.375rem = 38px. Every homepage header shares this size on mobile. */
   font-size: 2.375rem;
 
-  /* --- Space It --- */
-
   /* Hides header text until the typewriter keyframes animation reveals it on the page */
   overflow: hidden;
-
-  /* --- Style It --- */
 
   /*
     Limelight, same face as torischuyler.github.io, in the site's green.
@@ -56,8 +47,6 @@
 
   /* Keeps text on one line so it types out like a typewriter */
   white-space: nowrap;
-
-  /* --- Chaos It --- */
 
   /*
     Typewriter effect: Text appears character-by-character.
@@ -88,14 +77,9 @@
 
 /* Blinking cursor, parked just after the word so the heading stays centered */
 .who-am-i-container h1 span::after {
-  /* --- Space It --- */
   position: absolute;
   left: 100%;
-
-  /* --- Style It --- */
   content: "|";
-
-  /* --- Chaos It --- */
 
   /* Blinks every 1s for 7 cycles, then stops */
   animation: blink 1s 7 forwards;
@@ -103,10 +87,7 @@
 
 /* Paragraph text */
 .who-am-i-container p {
-  /* --- Space It --- */
   margin-bottom: 0.5rem;
-
-  /* --- Style It --- */
   text-align: center;
 
   /* Keeps a wrapped line from leaving one short word sitting by itself */
@@ -115,27 +96,20 @@
 
 /* Unordered list */
 .who-am-i-container ul {
-  /* --- Size It --- */
-
   /* Shrinks to the longest bullet so the whole list can sit in the middle */
   width: fit-content;
   max-width: 100%;
-
-  /* --- Space It --- */
 
   /* Centers the list. Emojis stay in each item's left padding, so they still line up. */
   margin-left: auto;
   margin-right: auto;
 
-  /* --- Style It --- */
-
-  /* --- Remove default bullets --- */
+  /* Remove default bullets */
   list-style-type: none;
 }
 
 /* List items */
 .who-am-i-container li {
-  /* --- Space It --- */
   margin-bottom: 0.5rem;
   padding-left: 2.2rem;
   white-space: nowrap;
@@ -149,42 +123,29 @@
 
 /* Custom emoji bullets */
 .who-am-i-container li:nth-child(1)::before {
-  /* --- Space It --- */
-
   /* Places the emoji at the left edge of the <li>, which is indented by the <ul> */
   position: absolute;
 
   /* Moves the emoji to the left edge of the <li> */
   left: 0;
-
-  /* --- Style It --- */
   content: "🎮";
 }
 
 .who-am-i-container li:nth-child(2)::before {
-  /* --- Space It --- */
   position: absolute;
   left: 0;
-
-  /* --- Style It --- */
   content: "🔬";
 }
 
 .who-am-i-container li:nth-child(3)::before {
-  /* --- Space It --- */
   position: absolute;
   left: 0;
-
-  /* --- Style It --- */
   content: "😌";
 }
 
 .who-am-i-container li:nth-child(4)::before {
-  /* --- Space It --- */
   position: absolute;
   left: 0;
-
-  /* --- Style It --- */
   content: "📐";
 }
 
@@ -202,8 +163,6 @@
   typewriter as whoami. The typing waits until the section is on screen.
 */
 .env-section {
-  /* --- Space It --- */
-
   /* Clears the ASCII tree so this reads as its own section */
   margin-top: 3rem;
 }
@@ -244,27 +203,19 @@
   blinks the cursor, then that cursor becomes the location pin.
 */
 .who-am-i-container h2 {
-  /* --- Size It --- */
-
   /* Same 38px as whoami on mobile. Desktop restores 4rem. */
   font-size: 2.375rem;
-
-  /* --- Space It --- */
   margin-top: 2rem;
   margin-bottom: 1rem;
 
   /* Hides the heading until the typewriter reveals it */
   overflow: hidden;
-
-  /* --- Style It --- */
   font-family: Limelight, system-ui, sans-serif;
   font-weight: 700;
   color: var(--header-color);
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
-
-  /* --- Chaos It --- */
 
   /* 16 steps, one per character in "git fetch origin" */
   animation:
@@ -383,8 +334,6 @@
   once it is on screen, blinks the cursor, then that cursor becomes the bucket.
 */
 .sandbox-section {
-  /* --- Space It --- */
-
   /* Clears the env list so this reads as its own section */
   margin-top: 3rem;
 }
@@ -438,8 +387,6 @@
 }
 
 .sandbox-link {
-  /* --- Size It --- */
-
   /* 1.5rem = 24px on the 16px root. Same size on desktop and mobile. */
   font-size: 1.5rem;
   font-weight: 600;
@@ -448,14 +395,10 @@
   /* Big enough to tap, and the padding is part of the focus ring */
   display: inline-block;
   padding: 0.45rem 0.35rem;
-
-  /* --- Style It --- */
   font-family: "Space Grotesk", system-ui, sans-serif;
   color: #d4af37;
   text-decoration: none;
   border-radius: 4px;
-
-  /* --- Chaos It --- */
   transition:
     color 0.2s ease,
     text-shadow 0.2s ease;
@@ -487,8 +430,6 @@
 
 /* ASCII tree */
 .ascii-tree {
-  /* --- Size It --- */
-
   /* Shrinks to the longest line, then stops at the container edge */
   width: fit-content;
   max-width: 100%;
@@ -499,8 +440,6 @@
   /* Matches the mobile body size: 0.875rem on the 16px root. */
   font-size: 14px;
 
-  /* --- Space It --- */
-
   /* Centers the tree as one block. Lines stay left-aligned so the branches still connect. */
   margin-left: auto;
   margin-right: auto;
@@ -510,8 +449,6 @@
     root pulls the centered tree under the heading.
   */
   transform: translateX(18px);
-
-  /* --- Style It --- */
   font-family: monospace;
   text-align: left;
 
@@ -536,13 +473,10 @@
 
 /* Portrait */
 .portrait {
-  /* --- Size It --- */
   max-width: 100%;
 
   /* Maintains aspect ratio when scaled */
   height: auto;
-
-  /* --- Space It --- */
 
   /* Makes the image a block element to allow margin centering */
   display: block;
@@ -552,8 +486,6 @@
     gallery offset. Centers horizontally with auto margins.
   */
   margin: calc(30px + 1rem) auto 1rem;
-
-  /* --- Style It --- */
 
   /* Adds a subtle border and shadow for visual polish */
   border-radius: 8px;
@@ -631,8 +563,6 @@
   }
 
   .ascii-tree {
-    /* --- Size It --- */
-
     /* torischuyler.github.io uses 1rem against an 18px root. */
     font-size: 18px;
 
