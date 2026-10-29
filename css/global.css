@@ -30,7 +30,7 @@
 
 /*
   Body: default font and colors for every page.
-  Space Grotesk loads from Google Fonts in each page's <head>.
+  Fonts load from Google Fonts in each page's <head>.
 */
 body {
   font-family: "Space Grotesk", system-ui, sans-serif;
