@@ -1,15 +1,10 @@
 {
   "name": "victoriaschuyler.github.io",
-  "version": "1.0.1",
+  "private": true,
   "description": "This file contains metadata for dev dependencies (like stylelint) and npm scripts (commands to run, like lint:css).",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint:css": "stylelint \"css/**/*.css\"",
     "lint:css:fix": "stylelint \"css/**/*.css\" --fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/victoriaschuyler/victoriaschuyler.github.io.git"
   },
   "devDependencies": {
     "stylelint": "^17.16.0",
