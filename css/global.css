@@ -46,7 +46,7 @@
     Default is 16px in most browsers, but we define it explicitly for consistency
     and control, ensuring responsive scaling starts from a known value.
   */
-    font-size: 16px;
+  font-size: 16px;
 
   /* --- Style It --- */
 
@@ -69,10 +69,10 @@
   */
 
   /* 🌑 Dark Theme Agnostic Variables */
-  --background-color: #2D5A8E;
-  --text-color: #FFF;
-  --header-color: #9CBB80;
-  --subheader-color: #D4AF37;
+  --background-color: #2d5a8e;
+  --text-color: #fff;
+  --header-color: #9cbb80;
+  --subheader-color: #d4af37;
 }
 
 /* 
@@ -88,13 +88,13 @@ body {
   /* --- Style It --- */
 
   /* Sets a modern font stack with fallbacks and uses custom variables for theme colors. */
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: "Space Grotesk", system-ui, sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
 }
 
 /* Main Page Heading */
- h1 {
+h1 {
   /* --- Size It --- */
 
   /* 2.5rem = 40px (16px root × 2.5) */

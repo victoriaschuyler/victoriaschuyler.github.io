@@ -1,20 +1,23 @@
 {
   "name": "victoriaschuyler.github.io",
   "private": true,
-  "description": "This file contains metadata for dev dependencies (like stylelint, markuplint and eslint) and npm scripts (commands to run, like lint:css).",
+  "description": "This file contains metadata for dev dependencies (like stylelint, markuplint, eslint and prettier) and npm scripts (commands to run, like npm run lint:css).",
   "scripts": {
     "lint:css": "stylelint \"css/**/*.css\"",
     "lint:css:fix": "stylelint \"css/**/*.css\" --fix",
     "lint:html": "markuplint \"**/*.html\"",
     "lint:html:fix": "markuplint \"**/*.html\" --fix",
     "lint:js": "eslint \"js/**/*.js\"",
-    "lint:js:fix": "eslint \"js/**/*.js\" --fix"
+    "lint:js:fix": "eslint \"js/**/*.js\" --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.13.0",
     "globals": "^17.13.0",
     "markuplint": "^5.4.0",
+    "prettier": "3.9.10",
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0"
   }

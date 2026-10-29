@@ -15,7 +15,8 @@ const reached = (target) => {
   if (!onScreen) return false;
 
   const inReadingBand = rect.top < viewHeight * 0.5;
-  const atPageEnd = window.scrollY + viewHeight >= document.documentElement.scrollHeight - 2;
+  const atPageEnd =
+    window.scrollY + viewHeight >= document.documentElement.scrollHeight - 2;
   return inReadingBand || atPageEnd;
 };
 
@@ -26,21 +27,21 @@ const onScreen = (target, play) => {
   const tick = () => {
     if (played || !reached(target)) return;
     played = true;
-    window.removeEventListener('scroll', tick);
-    window.removeEventListener('resize', tick);
+    window.removeEventListener("scroll", tick);
+    window.removeEventListener("resize", tick);
     play();
   };
 
-  window.addEventListener('scroll', tick, { passive: true });
-  window.addEventListener('resize', tick);
+  window.addEventListener("scroll", tick, { passive: true });
+  window.addEventListener("resize", tick);
   tick();
 };
 
 const playHeading = (heading) => {
   if (!heading) return;
 
-  onScreen(heading.closest('.type-line') || heading, () => {
-    heading.classList.add('is-visible');
+  onScreen(heading.closest(".type-line") || heading, () => {
+    heading.classList.add("is-visible");
   });
 };
 
@@ -49,18 +50,18 @@ const playHeading = (heading) => {
 const swapCursor = (heading) => {
   if (!heading) return;
 
-  heading.addEventListener('animationend', (event) => {
-    if (event.animationName === 'blink') heading.classList.add('typed');
+  heading.addEventListener("animationend", (event) => {
+    if (event.animationName === "blink") heading.classList.add("typed");
   });
 };
 
-const whoami = document.querySelector('main > .type-line h1');
-const envHeading = document.querySelector('.env-section h1');
-const sandboxHeading = document.querySelector('.sandbox-heading');
-const fetchHeading = document.querySelector('.fetch-heading');
+const whoami = document.querySelector("main > .type-line h1");
+const envHeading = document.querySelector(".env-section h1");
+const sandboxHeading = document.querySelector(".sandbox-heading");
+const fetchHeading = document.querySelector(".fetch-heading");
 
 playHeading(whoami);
-if (fetchHeading) fetchHeading.classList.add('is-visible');
+if (fetchHeading) fetchHeading.classList.add("is-visible");
 swapCursor(fetchHeading);
 swapCursor(sandboxHeading);
 
@@ -72,8 +73,9 @@ const armLowerHeadings = () => {
   playHeading(sandboxHeading);
 };
 
-const trees = [...document.querySelectorAll('.ascii-tree')];
-const visibleTree = () => trees.find((tree) => getComputedStyle(tree).display !== 'none');
+const trees = [...document.querySelectorAll(".ascii-tree")];
+const visibleTree = () =>
+  trees.find((tree) => getComputedStyle(tree).display !== "none");
 const treeReady = () => {
   const shown = visibleTree();
   return shown && shown.textContent.trim().length > 0;
@@ -95,7 +97,11 @@ if ((envHeading || sandboxHeading) && (trees.length === 0 || treeReady())) {
   });
 
   trees.forEach((tree) => {
-    treeWatcher.observe(tree, { childList: true, characterData: true, subtree: true });
+    treeWatcher.observe(tree, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
   });
 
   setTimeout(start, 3000);
