@@ -15,8 +15,8 @@
 }
 
 /*
-  Gold like the homepage links, even after it's visited. Hover and keyboard focus
-  brighten it with a glow. It shows ← 🏡, and screen readers announce it as "Home".
+  Matches the homepage links and keeps its color after it's visited. Hover and
+  keyboard focus brighten it with a glow. It shows ← 🏡, and screen readers announce it as "Home".
 */
 .project-home-link {
   font-size: 1.65rem;

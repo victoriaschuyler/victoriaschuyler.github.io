@@ -1,28 +1,22 @@
-/* 🏡 Index.css - Stylesheet for the homepage.
-  Defines styles specific to the home of Victoria Schuyler.
-*/
+/* 🏡 Homepage styles */
 
 /*
-  📄 Container for "whoami" content
-  Controls width, spacing, and typography with a mobile-first approach
+  📄 Wraps all homepage content. This rule sets the mobile sizes;
+  the media query at the bottom of this file enlarges the type for desktop.
 */
 .who-am-i-container {
-  max-width: 100vw;
   line-height: 1.6;
 
-  /* Mobile: smaller type so each bullet stays on one line. Desktop restores 1.25rem. */
+  /* 0.875rem = 14px, so each bullet stays on one line. */
   font-size: 0.875rem;
 
-  /* Centers container horizontally */
-  margin: 0 auto;
-
-  /* Scalable inner spacing (32px ÷ 16px = 2rem) */
+  /* 2rem = 32px */
   padding: 2rem;
 }
 
 /*
-  Centers the heading on its own text, the way torischuyler.github.io
-  centers whoami. The typewriter then grows across the word, not the page.
+  Shrinks each heading's box to the width of its text and centers it, so the
+  typewriter reveals just the word instead of sweeping across the whole page.
 */
 .type-line {
   width: max-content;
@@ -33,15 +27,11 @@
 
 /* Page Heading */
 .who-am-i-container h1 {
-  /* 2.375rem = 38px. Every homepage header shares this size on mobile. */
+  /* 2.375rem = 38px */
   font-size: 2.375rem;
 
   /* Hides header text until the typewriter keyframes animation reveals it on the page */
   overflow: hidden;
-
-  /*
-    Limelight, same face as torischuyler.github.io, in the site's green.
-  */
   font-family: Limelight, system-ui, sans-serif;
   color: var(--header-color);
 
@@ -49,15 +39,11 @@
   white-space: nowrap;
 
   /*
-    Typewriter effect: Text appears character-by-character.
-    - 2s duration for a relaxed pace.
-    - steps() mimics the typewriter "jump" per character—assuming ~10 chars in "whoami"
-    - Forwards keeps the text visible after animation ends.
-    Paused until the heading scrolls into view. whoami is already there
-    on load, so it still types immediately.
+    Typewriter: reveals the text in steps over 2s, then stays visible.
+    Paused until it scrolls into view; whoami is on screen at load, so it types right away.
   */
   animation:
-    typewriter 2s steps(10) forwards,
+    typewriter 2s steps(6) forwards,
     reveal-overflow 0s 2s forwards;
   animation-play-state: paused;
 }
@@ -75,120 +61,66 @@
   display: inline-block;
 }
 
-/* Blinking cursor, parked just after the word so the heading stays centered */
+/* Blinking cursor, just after the word */
 .who-am-i-container h1 span::after {
   position: absolute;
   left: 100%;
   content: "|";
 
-  /* Blinks every 1s for 7 cycles, then stops */
+  /* Blinks every 1s for 7 cycles, then pulls a Houdini */
   animation: blink 1s 7 forwards;
 }
 
 /* Paragraph text */
 .who-am-i-container p {
+  /* 0.5rem = 8px */
   margin-bottom: 0.5rem;
   text-align: center;
 
-  /* Keeps a wrapped line from leaving one short word sitting by itself */
+  /* Evens out line lengths when text wraps, so no word is left by itself */
   text-wrap: balance;
 }
 
-/* Unordered list */
+/* Env variables list: centered, with an emoji before each line */
 .who-am-i-container ul {
-  /* Shrinks to the longest bullet so the whole list can sit in the middle */
-  width: fit-content;
-  max-width: 100%;
-
-  /* Centers the list. Emojis stay in each item's left padding, so they still line up. */
-  margin-left: auto;
-  margin-right: auto;
-
-  /* Remove default bullets */
   list-style-type: none;
+  text-align: center;
 }
 
-/* List items */
 .who-am-i-container li {
+  /* 0.5rem = 8px */
   margin-bottom: 0.5rem;
-  padding-left: 2.2rem;
   white-space: nowrap;
-
-  /*
-    Sets <li> as the starting point for the ::before emojis.
-    Without this, the emojis would move to the page's left edge.
-  */
-  position: relative;
 }
 
-/* Custom emoji bullets */
-.who-am-i-container li:nth-child(1)::before {
-  /* Places the emoji at the left edge of the <li>, which is indented by the <ul> */
-  position: absolute;
+/* Emoji bullets */
+.who-am-i-container li::before {
+  margin-right: 0.4em;
+}
 
-  /* Moves the emoji to the left edge of the <li> */
-  left: 0;
+.who-am-i-container li:nth-child(1)::before {
   content: "🎮";
 }
 
 .who-am-i-container li:nth-child(2)::before {
-  position: absolute;
-  left: 0;
   content: "🔬";
 }
 
 .who-am-i-container li:nth-child(3)::before {
-  position: absolute;
-  left: 0;
   content: "😌";
 }
 
 .who-am-i-container li:nth-child(4)::before {
-  position: absolute;
-  left: 0;
   content: "📐";
 }
 
-/* Fallback for unsupported ::before */
-@supports not (selector(::before)) {
-  .who-am-i-container ul {
-    list-style-type: disc;
-    padding-left: 1rem;
-  }
-}
-
-/*
-  Env variables
-  A separate section below whoami. Same Limelight header, green, and
-  typewriter as whoami. The typing waits until the section is on screen.
-*/
+/* Env variables section */
 .env-section {
-  /* Clears the ASCII tree so this reads as its own section */
+  /* 3rem = 48px. Clears the ASCII tree so this reads as its own section. */
   margin-top: 3rem;
 }
 
-/*
-  Center each bullet on the header text. Shorter lines sit in the middle
-  of "env variables" instead of starting at the left of a page-centered column.
-*/
-.who-am-i-container .env-section ul {
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  text-align: center;
-}
-
-.who-am-i-container .env-section li {
-  padding-left: 0;
-  text-align: center;
-}
-
-.who-am-i-container .env-section li::before {
-  position: static;
-  margin-right: 0.4em;
-}
-
-/* Show the header if it cannot type itself in */
+/* Reduced motion or no JavaScript: show whoami without the typewriter (without JS it would stay hidden) */
 @media (prefers-reduced-motion: reduce), (scripting: none) {
   .who-am-i-container h1 {
     animation: none;
@@ -198,12 +130,11 @@
 }
 
 /*
-  git fetch origin
-  Same Limelight face and green as whoami. It types in once it is on screen,
-  blinks the cursor, then that cursor becomes the location pin.
+  Shared style for the section headings (git fetch origin, env variables, ls sandbox).
+  Each types in and blinks; then git fetch origin gets a 📍 and ls sandbox gets a 🪣.
 */
 .who-am-i-container h2 {
-  /* Same 38px as whoami on mobile. Desktop restores 4rem. */
+  /* 2.375rem = 38px, same as whoami. Desktop uses 4rem (64px). */
   font-size: 2.375rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -217,7 +148,7 @@
   text-decoration: none;
   white-space: nowrap;
 
-  /* 16 steps, one per character in "git fetch origin" */
+  /* 16 steps, one per character in "git fetch origin" - env and sandbox set their own below. */
   animation:
     typewriter 2s steps(16) forwards,
     reveal-overflow 0s 2s forwards;
@@ -264,15 +195,12 @@
   animation: emoji-pop 0.6s ease-out forwards;
 }
 
-/*
-  The pin drawing starts about 0.25em into its box, so the shared 0.12em
-  cursor gap sits it too far from the word. This lands the drawing in the
-  same gap the bucket uses beside "ls sandbox".
-*/
+/* The pin emoji has built-in space on its left; pull it in to match the bucket's gap. */
 .who-am-i-container h2.fetch-heading.typed span::after {
   margin-left: -0.1em;
 }
 
+/* Empty alt text so screen readers skip the pin */
 @supports (content: "📍" / "") {
   .who-am-i-container h2.typed span::after {
     content: "📍" / "";
@@ -330,8 +258,7 @@
 
 /*
   ls sandbox
-  Same Limelight face, size, and green as the other headers. It types in
-  once it is on screen, blinks the cursor, then that cursor becomes the bucket.
+  Types in once it is on screen, blinks, then the cursor becomes 🪣.
 */
 .sandbox-section {
   /* Clears the env list so this reads as its own section */
@@ -378,8 +305,8 @@
 }
 
 /*
-  The sandbox link stays gold, before and after a click. Hover brightens
-  it and turns on the same gold glow the site uses on headings.
+  The sandbox link keeps its color after it's visited. Hover and keyboard
+  focus brighten it with a glow.
 */
 .sandbox-entry {
   margin-top: 0.25rem;
@@ -396,7 +323,7 @@
   display: inline-block;
   padding: 0.45rem 0.35rem;
   font-family: "Space Grotesk", system-ui, sans-serif;
-  color: #d4af37;
+  color: var(--subheader-color);
   text-decoration: none;
   border-radius: 4px;
   transition:
@@ -412,14 +339,14 @@
 }
 
 .sandbox-link:visited {
-  color: #d4af37;
+  color: var(--subheader-color);
 }
 
 .sandbox-link:hover,
 .sandbox-link:focus-visible {
   color: #ffe7a3;
   text-shadow:
-    0 0 8px #d4af37,
+    0 0 8px var(--subheader-color),
     0 0 18px rgb(212 175 55 / 65%);
 }
 
@@ -445,8 +372,7 @@
   margin-right: auto;
 
   /*
-    Same nudge as torischuyler.github.io, where translateX(1rem) on an 18px
-    root pulls the centered tree under the heading.
+    translateX(1rem) on an 18px root pulls the centered tree under the heading.
   */
   transform: translateX(18px);
   font-family: monospace;
@@ -482,8 +408,7 @@
   display: block;
 
   /*
-    30px above the photo, plus 1rem of breathing room, matching the old
-    gallery offset. Centers horizontally with auto margins.
+    30px above the photo, plus 1rem of breathing room. Centers horizontally with auto margins.
   */
   margin: calc(30px + 1rem) auto 1rem;
 
@@ -543,10 +468,7 @@
   }
 }
 
-/*
-  💻 Tablet/Desktop Styles
-  Applies above 768px (tablet portrait width, e.g., iPad).
-*/
+/* 💻 Tablet and desktop (769px and up) */
 @media (width >= 769px) {
   .who-am-i-container {
     font-size: 1.25rem;
@@ -563,10 +485,10 @@
   }
 
   .ascii-tree {
-    /* torischuyler.github.io uses 1rem against an 18px root. */
+    /* 1rem against an 18px root */
     font-size: 18px;
 
-    /* translateX(4rem) on that page's 18px root. */
+    /* translateX(4rem) on that page's 18px root */
     transform: translateX(72px);
   }
 
