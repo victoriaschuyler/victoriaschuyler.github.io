@@ -56,7 +56,7 @@ const swapCursor = (heading) => {
 };
 
 const whoami = document.querySelector("main > .type-line h1");
-const envHeading = document.querySelector(".env-section h1");
+const envHeading = document.querySelector(".env-heading");
 const sandboxHeading = document.querySelector(".sandbox-heading");
 const fetchHeading = document.querySelector(".fetch-heading");
 

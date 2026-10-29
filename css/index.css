@@ -208,11 +208,6 @@
   margin-top: 3rem;
 }
 
-.who-am-i-container .env-section h1 {
-  /* Pulls the bullets up under the header. The shared h1 margin is looser. */
-  margin-bottom: 0.45rem;
-}
-
 /*
   Center each bullet on the header text. Shorter lines sit in the middle
   of "env variables" instead of starting at the left of a page-centered column.
@@ -306,6 +301,11 @@
   animation-play-state: running;
 }
 
+/* env variables keeps a plain cursor like whoami. No pin or bucket takes its place. */
+.who-am-i-container h2.env-heading span::after {
+  margin-left: 0;
+}
+
 /* Pin pops into the cursor slot once the last blink ends */
 .who-am-i-container h2.typed span::after {
   content: "📍";
@@ -351,6 +351,29 @@
     .who-am-i-container h2 span::after {
       content: "📍" / "";
     }
+  }
+}
+
+/*
+  env variables uses the shared h2 typewriter. These keep it looking like
+  whoami: tight to its bullets, the same pace, and a plain cursor.
+*/
+.who-am-i-container h2.env-heading {
+  /* The section supplies the gap. The shared h2 margin would stack on top of it. */
+  margin-top: 0;
+
+  /* Pulls the bullets up under the header. The shared h2 margin is looser. */
+  margin-bottom: 0.45rem;
+
+  /* 10 steps, the same pace as whoami. Only the timing changes. */
+  animation-timing-function: steps(10), ease;
+}
+
+/* Keep the cursor when motion is reduced. The shared h2 rule would swap in the pin. */
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  .who-am-i-container h2.env-heading span::after {
+    content: "|";
+    animation: blink 1s 7 forwards;
   }
 }
 
