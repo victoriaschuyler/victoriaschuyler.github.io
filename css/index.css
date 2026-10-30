@@ -81,7 +81,7 @@
   text-wrap: balance;
 }
 
-/* Env variables list: centered, with an emoji before each line */
+/* whoami bullets: centered, with an emoji before each line */
 .who-am-i-container ul {
   list-style-type: none;
   text-align: center;
@@ -114,12 +114,6 @@
   content: "📐";
 }
 
-/* Env variables section */
-.env-section {
-  /* 3rem = 48px. Clears the ASCII tree so this reads as its own section. */
-  margin-top: 3rem;
-}
-
 /* Reduced motion or no JavaScript: show whoami without the typewriter (without JS it would stay hidden) */
 @media (prefers-reduced-motion: reduce), (scripting: none) {
   .who-am-i-container h1 {
@@ -130,7 +124,7 @@
 }
 
 /*
-  Shared style for the section headings (git fetch origin, env variables, ls sandbox).
+  Shared style for the section headings (git fetch origin, ls sandbox).
   Each types in and blinks; then git fetch origin gets a 📍 and ls sandbox gets a 🪣.
 */
 .who-am-i-container h2 {
@@ -148,7 +142,7 @@
   text-decoration: none;
   white-space: nowrap;
 
-  /* 16 steps, one per character in "git fetch origin" - env and sandbox set their own below. */
+  /* 16 steps, one per character in "git fetch origin" - sandbox sets its own below. */
   animation:
     typewriter 2s steps(16) forwards,
     reveal-overflow 0s 2s forwards;
@@ -181,11 +175,6 @@
 
 .who-am-i-container h2.is-visible span::after {
   animation-play-state: running;
-}
-
-/* env variables keeps a plain cursor like whoami. No pin or bucket takes its place. */
-.who-am-i-container h2.env-heading span::after {
-  margin-left: 0;
 }
 
 /* Pin pops into the cursor slot once the last blink ends */
@@ -234,34 +223,11 @@
 }
 
 /*
-  env variables uses the shared h2 typewriter. These keep it looking like
-  whoami: tight to its bullets, the same pace, and a plain cursor.
-*/
-.who-am-i-container h2.env-heading {
-  /* The section supplies the gap. The shared h2 margin would stack on top of it. */
-  margin-top: 0;
-
-  /* Pulls the bullets up under the header. The shared h2 margin is looser. */
-  margin-bottom: 0.45rem;
-
-  /* 10 steps, the same pace as whoami. Only the timing changes. */
-  animation-timing-function: steps(10), ease;
-}
-
-/* Keep the cursor when motion is reduced. The shared h2 rule would swap in the pin. */
-@media (prefers-reduced-motion: reduce), (scripting: none) {
-  .who-am-i-container h2.env-heading span::after {
-    content: "|";
-    animation: blink 1s 7 forwards;
-  }
-}
-
-/*
   ls sandbox
   Types in once it is on screen, blinks, then the cursor becomes 🪣.
 */
 .sandbox-section {
-  /* Clears the env list so this reads as its own section */
+  /* Clears the ASCII tree so this reads as its own section */
   margin-top: 3rem;
 }
 

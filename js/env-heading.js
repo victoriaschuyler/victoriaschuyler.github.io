@@ -56,7 +56,6 @@ const swapCursor = (heading) => {
 };
 
 const whoami = document.querySelector("main > .type-line h1");
-const envHeading = document.querySelector(".env-heading");
 const sandboxHeading = document.querySelector(".sandbox-heading");
 const fetchHeading = document.querySelector(".fetch-heading");
 
@@ -65,11 +64,10 @@ if (fetchHeading) fetchHeading.classList.add("is-visible");
 swapCursor(fetchHeading);
 swapCursor(sandboxHeading);
 
-// The ASCII tree loads after first paint and pushes these two down.
-// Wait for the visible tree so a heading does not type, then get pushed
+// The ASCII tree loads after first paint and pushes ls sandbox down.
+// Wait for the visible tree so the heading does not type, then get pushed
 // off screen before the reader reaches it.
 const armLowerHeadings = () => {
-  playHeading(envHeading);
   playHeading(sandboxHeading);
 };
 
@@ -81,9 +79,9 @@ const treeReady = () => {
   return shown && shown.textContent.trim().length > 0;
 };
 
-if ((envHeading || sandboxHeading) && (trees.length === 0 || treeReady())) {
+if (sandboxHeading && (trees.length === 0 || treeReady())) {
   armLowerHeadings();
-} else if (envHeading || sandboxHeading) {
+} else if (sandboxHeading) {
   let armed = false;
   const start = () => {
     if (armed) return;
