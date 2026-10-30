@@ -30,6 +30,12 @@
   /* 2.375rem = 38px */
   font-size: 2.375rem;
 
+  /*
+    0.8rem ≈ 13px. The paragraph's taller line-height adds its own space above the text,
+    so this smaller margin makes the gap match git fetch origin and its tree.
+  */
+  margin-bottom: 0.8rem;
+
   /* Hides header text until the typewriter keyframes animation reveals it on the page */
   overflow: hidden;
   font-family: Limelight, system-ui, sans-serif;
@@ -79,6 +85,11 @@
 
   /* Evens out line lengths when text wraps, so no word is left by itself */
   text-wrap: balance;
+}
+
+/* The intro line fills the width like the bullets, and only the leftover words wrap */
+.who-am-i-container p.intro {
+  text-wrap: wrap;
 }
 
 /* whoami bullets: centered, with an emoji before each line */
@@ -250,6 +261,12 @@
 .who-am-i-container .sandbox-section h2 {
   /* The section supplies the gap. The shared h2 margin would stack on top of it. */
   margin-top: 0;
+
+  /*
+    0.45rem ≈ 7px. The link's padding and line-height add space above its text,
+    so this smaller margin makes the gap match git fetch origin and its tree.
+  */
+  margin-bottom: 0.45rem;
 
   /*
     10 steps, one per character in "ls sandbox". Only the timing changes.
